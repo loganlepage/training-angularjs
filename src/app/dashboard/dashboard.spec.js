@@ -1,15 +1,16 @@
 /* eslint strict: [2, "global"] */
 'use strict';
 
-describe('hello component', () => {
+describe('dashboard component', () => {
 
-    beforeEach(module('app', $provide => {
-        $provide.factory('hello', () => {
+    beforeEach(module('app.dashboard', $provide => {
+        $provide.factory('dashboard', () => {
             return {
-                templateUrl: 'app/hello.html'
+                templateUrl: 'app/dashboard/dashboard.html'
             };
         });
     }));
+
     it('should render hello world', angular.mock.inject(($rootScope, $compile) => {
         const element = $compile('<hello>Loading...</hello>')($rootScope);
         $rootScope.$digest();
