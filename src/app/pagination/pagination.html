@@ -1,0 +1,31 @@
+<ul class="pagination">
+    <li ng-if="$ctrl.page.index > 1">
+        <a class="page-link" ng-click="$ctrl.onIndexChange($ctrl.page.index - 1)" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+        </a>
+    </li>
+
+    <li ng-repeat="i in $ctrl.getRange()" class="{{ i == $ctrl.page.index ? 'active' : '' }}">
+        <a ng-click="$ctrl.onIndexChange(i)">{{ i }}</a>
+    </li>
+
+    <li ng-if="!$ctrl.lastPage">
+        <a class="page-link" ng-click="$ctrl.onIndexChange($ctrl.page.index + 1)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+        </a>
+    </li>
+</ul>
+
+<div class="btn-group btn-group-sm pull-right" role="group">
+    <button ng-click="$ctrl.onLimitChange(10)"
+       class="btn btn-default {{ $ctrl.page.limit == 10 ? 'active' : '' }}">10
+    </button>
+    <button ng-click="$ctrl.onLimitChange(50)"
+       class="btn btn-default {{ $ctrl.page.limit == 50 ? 'active' : '' }}">50
+    </button>
+    <button ng-click="$ctrl.onLimitChange(100)"
+       class="btn btn-default {{ $ctrl.page.limit == 100 ? 'active' : '' }}">100
+    </button>
+</div>
