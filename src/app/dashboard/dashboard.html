@@ -1,20 +1,23 @@
+<header-menu></header-menu>
+
 <section id="main">
     <div class="container">
-        <h1 id="homeTitle">{{ $ctrl.page.nb }} Ordinateurs trouvés</h1>
+        <h1 id="homeTitle">{{ $ctrl.page.nb }} {{ 'dashboard.find' | translate }}</h1>
         <div id="actions" class="form-horizontal">
             <div class="pull-left">
-                <form id="searchForm" action="#" method="GET" class="form-inline">
+                <form id="searchForm" class="form-inline" ng-submit="$ctrl.doSearch">
                     <input type="search" id="searchbox" name="search" class="form-control"
-                           placeholder="Chercher un nom"/>
-                    <input type="submit" id="searchsubmit" value="Filtrer par nom" class="btn btn-primary"/>
+                           placeholder="{{ 'dashboard.searchPh' | translate }}"/>
+                    <input type="submit" id="searchsubmit" value="{{ 'dashboard.search' | translate }}"
+                           class="btn btn-primary"/>
                 </form>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" id="addComputer" href="/computer/add">
-                    Ajouter un ordinateur
+                <a class="btn btn-success" id="addComputer" href="/computer/add" translate>
+                    computer.add
                 </a>
-                <a class="btn btn-default" id="editComputer" href="#" onclick="$.fn.toggleEditMode();">
-                    Modifier un ordinateur
+                <a class="btn btn-default" id="editComputer" href="#" onclick="$.fn.toggleEditMode();" translate>
+                    computer.edit
                 </a>
             </div>
         </div>
@@ -34,10 +37,10 @@
                             </a>
                     </span>
                 </th>
-                <th>Nom de l'ordinateur</th>
-                <th>Date d'introduction</th>
-                <th>Date d'abandon</th>
-                <th>Compagnie</th>
+                <th translate>computer.name</th>
+                <th translate>computer.introduced</th>
+                <th translate>computer.discontinued</th>
+                <th translate>computer.company</th>
             </tr>
             </thead>
             <!-- Browse attribute computers -->
@@ -49,14 +52,15 @@
                 <td>
                     <a href="/computer/edit/{{ computer.id }}">{{ computer.name }}</a>
                 </td>
-                <td>{{ computer.introduced }}</td>
-                <td>{{ computer.discontinued }}</td>
-                <td>{{ computer.companyName }}</td>
+                <td>{{ computer.introduced | date : 'dd/MM/yyyy'}}</td>
+                <td>{{ computer.discontinued | date : 'dd/MM/yyyy'}}</td>
+                <td>{{ computer.company.name }}</td>
             </tr>
             </tbody>
         </table>
     </div>
 </section>
+
 <footer class="navbar-fixed-bottom">
     <div class="container text-center">
         <pagination ng-if="$ctrl.state.loaded" page='$ctrl.page' events='$ctrl.events' maxLinks='10'/>

@@ -4,8 +4,9 @@
         'ngAnimate',
         'ui.router',
         'blocks',
-        'app.pagination',
-        'app.dashboard'
+        'pascalprecht.translate',
+        'app.dashboard',
+        'app.computer'
     ]);
 
 })();

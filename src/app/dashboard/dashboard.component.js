@@ -5,14 +5,6 @@
         .component('dashboard', {
             templateUrl: 'src/app/dashboard/dashboard.html',
             controller: DashboardController
-        })
-        .component('addComputer', {
-            templateUrl: 'src/app/dashboard/addComputer.html',
-            controller: AddComputerController
-        })
-        .component('editComputer', {
-            templateUrl: 'src/app/dashboard/editComputer.html',
-            controller: EditComputerController
         });
 
     /* @ngInject */
@@ -24,6 +16,7 @@
             loaded: false
         };
         vm.$onInit = getList;
+        vm.doSearch = doSearch;
         let urlParams = {};
 
         function getList() {
@@ -37,6 +30,10 @@
             });
         }
 
+        function doSearch(data) {
+            console.log(data);
+        }
+
         function onIndexChange(newIndex) {
             urlParams.index = newIndex;
             getList();
@@ -48,31 +45,4 @@
             getList();
         }
     }
-
-    /* @ngInject */
-    function AddComputerController() {}
-
-    /* @ngInject */
-    function EditComputerController(computerService, companyService, $stateParams) {
-        // jshint validthis: true
-        const vm = this;
-        vm.$onInit = $onInit;
-        vm.submit = submit;
-
-        function $onInit() {
-            computerService.get($stateParams.id).then((response) => {
-                vm.computer = response.data;
-            });
-            companyService.list.then((response) => {
-                vm.companies = response.data;
-            });
-        }
-
-        function submit() {
-            computerService.edit(vm).then((response) => {
-                vm.computer = response.data;
-            });
-        }
-    }
-
 })();

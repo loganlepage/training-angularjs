@@ -27,7 +27,6 @@
             vm.lastPage = vm.page.index == vm.page.maxPage;
             vm.pgStart = (vm.page.index - vm.maxLinks / 2) > 1 ? vm.page.index - vm.maxLinks / 2 : 1;
             vm.pgEnd = vm.pgStart + vm.maxLinks;
-            $log.debug(vm.page.index);
             if(vm.pgEnd > vm.page.maxPage + 1) {
                 vm.diff = vm.pgEnd - vm.page.maxPage;
                 vm.pgStart = vm.pgStart - vm.diff - 1;

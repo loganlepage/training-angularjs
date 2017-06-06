@@ -1,14 +1,14 @@
 (function() {
     'use strict';
     angular
-        .module('app.dashboard')
+        .module('app')
         .config(routesConfig);
 
     function routesConfig($stateProvider) {
         $stateProvider
-            .state('dashboard', {
-                url: '/dashboard',
-                component: 'dashboard',
+            .state('404', {
+                url: '/404',
+                templateUrl: 'src/app/404.html'
             });
     }
 })();
